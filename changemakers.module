@@ -1244,21 +1244,22 @@ function changemakers_test_user(){
       //
       //user_save($data);
       $problem =array();
+      $data->field_proflie_language['und'][0]['value'] = "";
       foreach ($_POST['field_profile_skill_interest']['und'] as $key => $value) {
        $data->field_profile_skill_interest['und'][] =  array('tid'=>$value);
        if($value==39){
           $data->field_proflie_language['und'][0]['value'] = $_POST['field_proflie_language']['und'][0]['value'];
        }else{
-          $data->field_proflie_language['und'][0]['value'] = "";
+          //$data->field_proflie_language['und'][0]['value'] = "";
        }
       }
       
      
       $data->field_interest_other['und'][0]['value'] = $_POST['field_interest_other']['und'][0]['value'];
-      // echo "<pre>";
-      // print_r($data);
-      // echo "</pre>";
-      // exit();
+       //echo "<pre>";
+       //print_r($data);
+       //echo "</pre>";
+       //exit();
       user_save($data);
 
     }
