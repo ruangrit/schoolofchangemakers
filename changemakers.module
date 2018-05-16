@@ -1411,6 +1411,7 @@ function changemakers_test_user(){
   }
 
   function changemakers_init() {
+    // ========== debug code =========
     global $user;
     //print $user->roles[3];
 
@@ -10154,11 +10155,13 @@ function changemakers_test_user(){
     $query = db_select('node', 'fm');
     $query->leftjoin('field_data_field_problem_topic', 'fi', 'fm.nid = fi.entity_id');
     $query->leftjoin('field_data_field_project_target', 'fx', 'fm.nid = fx.entity_id');
+    $query->leftjoin('field_data_body', 'fb', 'fm.nid = fb.entity_id');
     // $query->fields('fm', array('nid'));
     $query->addField('fm', 'nid', 'entity_id');
     $db_or = db_or();
     if($text){
       $db_or->condition('fm.title', '%'.$text.'%' , 'like');
+      $db_or->condition('fb.body_value', '%'.$text.'%' , 'like');
     }
     if(!empty($tid)){
       $db_or->condition('fi.field_problem_topic_tid', $tid, 'in');
